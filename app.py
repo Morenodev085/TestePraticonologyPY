@@ -20,6 +20,8 @@ def criar_tabela():
     try:
         conn = psycopg2.connect(DATABASE_URL)
         cur = conn.cursor()
+
+        cur.execute("DROP TABLE IF EXISTS historico_cashback CASCADE;")
         cur.execute("""
             CREATE TABLE IF NOT EXISTS historico_cashback (
                 id SERIAL PRIMARY KEY,
