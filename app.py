@@ -16,6 +16,28 @@ def get_db_connection():
     return conn
 #Fim de configurações
 
+def inicializador_banco():
+    try:
+        conn = psycopg2.connect(DATABASE_URL)
+        cur = conn.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS historico_cashback (
+                id SERIAL PRIMARY KEY,
+                ip_usuario VARCHAR(50),
+                tipo_cliente BOOLEAN,
+                valor_compra DECIMAL(10, 2),
+                valor_chashback DECIMAL(10, 2),
+                data_consulta TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+        conn.commit()
+        cur.close()
+        conn.close()
+        print("Banco de dados verificado/criado com sucesso!")
+    except Exception as e:
+        print(f"Erro ao inicializar o banco: {e}")
+
+        inicializador_banco()
 
 @app.route('/api/cashback', methods=['POST'])
 def calcular():
