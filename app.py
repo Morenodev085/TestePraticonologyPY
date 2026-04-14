@@ -26,7 +26,7 @@ def criar_tabela():
                 ip_usuario VARCHAR(50),
                 tipo_cliente BOOLEAN,
                 valor_compra DECIMAL(10, 2),
-                valor_chashback DECIMAL(10, 2),
+                valor_cashback DECIMAL(10, 2),
                 data_consulta TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         """)
