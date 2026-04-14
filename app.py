@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 # Config de variáveis de ambiente
 
-DATABASE_URL = os.environ.get('postgresql://banco_nology_user:60PGYweT8Nd439QIYSQRK5sbjNsCnhxo@dpg-d7f4k4d8nd3s739c3l6g-a/banco_nology')
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 def get_db_connection():
     conn = psycopg2.connect(DATABASE_URL)
