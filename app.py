@@ -61,7 +61,7 @@ def calcular():
         conn = get_db_connection()
         cur = conn.cursor()
         query = """
-            INSERT INTO historico_cashback (ip_usuario, tipo_cliente, valor_compra, valor_chashback)
+            INSERT INTO historico_cashback (ip_usuario, tipo_cliente, valor_compra, valor_cashback)
             VALUES (%s, %s, %s, %s)
         """
         cur.execute(query, (ip_usuario, is_vip, valor_com_desconto, round(cashback, 2)))
@@ -81,7 +81,7 @@ def ver_historico():
     try:
         conn = get_db_connection()
         cur = conn.cursor()
-        cur.execute("SELECT ip_usuario, tipo_cliente, valor_compra, valor_chashback, data_consulta FROM historico_cashback ORDER BY data_consulta DESC LIMIT 10")
+        cur.execute("SELECT ip_usuario, tipo_cliente, valor_compra, valor_cashback, data_consulta FROM historico_cashback ORDER BY data_consulta DESC LIMIT 10")
         rows = cur.fetchall()
         
         historico = []
